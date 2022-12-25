@@ -1,0 +1,210 @@
+/** @format */
+
+@import "./reset";
+@import "./global";
+@import "./flex";
+@import "./pagination";
+@import "./singlePost";
+
+/* custom-styling */
+$grn: #5cb85c;
+$bgGray: #f3f3f3;
+$bgDarkGray: #818a91;
+$wht: #ffffff;
+
+.pdtB {
+  padding: 1.5rem 0rem;
+}
+.error {
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: red;
+}
+
+/* header */
+header {
+  background-color: $bgGray;
+}
+.bdr {
+  border: 1px solid;
+}
+.navUl {
+  li {
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: $bgDarkGray;
+    margin-left: 1rem;
+  }
+}
+
+/* home */
+.homeBannerSec {
+  color: $wht;
+  background-color: $grn;
+  margin: 2rem 0;
+  padding: 3rem 0;
+}
+
+// feed navbar
+
+.feedNav {
+  box-sizing: border-box;
+  border-bottom: 1px solid $bgDarkGray;
+  li {
+    margin-right: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid $grn;
+  }
+}
+
+// sign-up
+
+.signupFormCnt {
+  h1 {
+    font-size: 2rem;
+    text-transform: capitalize;
+    color: $bgDarkGray;
+  }
+  p {
+    a {
+      font-weight: 100;
+      color: $grn;
+    }
+  }
+  form {
+    width: 50%;
+    margin: auto;
+    input {
+      width: 100%;
+      font-size: 1.2rem;
+      border-radius: 0.2rem;
+      border: 1px solid $bgDarkGray;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+    }
+    input::placeholder {
+      font-size: 1rem;
+      font-weight: 100;
+      text-transform: capitalize;
+    }
+    button {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// post
+.pst {
+  border-bottom: 1px solid $bgDarkGray;
+  padding: 2rem 0;
+}
+
+.pstFgr {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.pstUsrNm {
+  p {
+    font-size: 1.1rem;
+    color: $grn;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  time {
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: $bgDarkGray;
+  }
+}
+
+.pstTd {
+  margin: 1rem 0;
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  p {
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: $bgDarkGray;
+  }
+}
+.pstLk {
+  border: 0.5px solid $grn;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  color: $grn;
+}
+
+.pstFtr {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: $bgDarkGray;
+  ul {
+    li {
+      margin: 0rem 0.2rem;
+      padding: 0.1rem 0.3rem;
+      border: 1px solid $bgGray;
+      border-radius: 1rem;
+    }
+  }
+}
+
+// tag -aside
+
+.tgsAside {
+  background-color: $bgGray;
+  padding: 1rem;
+  span {
+    font-size: 0.9rem;
+    font-weight: 200;
+    color: $wht;
+    margin: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    background-color: $bgDarkGray;
+  }
+}
+
+/* footer */
+.cmnFtr {
+  background-color: $bgGray;
+
+  padding: 1rem 0;
+}
+.footerNav > p {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
+.footerNav > p > b > a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $grn;
+}
+.footerNav > p > b > a:hover {
+  text-decoration: underline;
+}
+.footerNav > p > small > span > a {
+  color: $grn;
+}
+.footerNav > p > small > span > a:hover {
+  text-decoration: underline;
+}
+
+// active
+.active {
+  li {
+    color: #5cb85c;
+  }
+}
+
+// error page
+.errorCnt {
+  height: 80vh;
+  button {
+    padding: 0.1rem 1rem;
+  }
+}

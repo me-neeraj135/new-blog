@@ -1,0 +1,810 @@
+/** @format */
+/** @format */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  /* font-family: "Barlow Condensed", sans-serif; */
+  /* font-family: "Josefin Sans", sans-serif; */
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Ubuntu", sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/**
+ * Global Styles
+ *
+ * @format
+ */
+/* General */
+/* Container */
+.container {
+  max-width: 100vw;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.primary-heading {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.secondary-heading {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.tertiary-heading {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.txtCnt {
+  text-align: center;
+}
+
+.mrgTb {
+  margin: 2rem 0;
+}
+
+.mrgLf {
+  margin: 0rem 1rem;
+}
+
+/* Anchor Decoration */
+a {
+  text-decoration: none;
+}
+
+/* Image Adjust */
+.full-width {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Positions */
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.z-index-100 {
+  z-index: 100;
+}
+
+.z-index-50 {
+  z-index: 50;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.35rem 1rem;
+  border-radius: 0.2rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #5cb85c;
+}
+
+.btn-secondary {
+  color: white;
+  background-color: purple;
+  border: 1px solid purple;
+}
+
+.bdRadius {
+  border-radius: 50%;
+}
+
+/**
+ * Flex
+ *
+ * @format
+ */
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Justify Content */
+.justify-start {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.justify-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.justify-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.justify-around {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.justify-evenly {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+/* Align Items */
+.align-start {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.align-end {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.align-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.align-stretch {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.align-baseline {
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+/* Align Content */
+.align-content-start {
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+.align-content-end {
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
+}
+
+.align-content-center {
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.align-content-stretch {
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+}
+
+.align-content-around {
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+}
+
+.align-content-between {
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+/* Flex Wrap */
+.flex-wrap-yes {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.flex-wrap-no {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.flex-wrap-reverse {
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+}
+
+/* Flex Direction */
+.flex-direction-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.flex-direction-column-reverse {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.flex-direction-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.flex-direction-row-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Align Self */
+.align-self-start {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.align-self-end {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.align-self-center {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.align-self-auto {
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+}
+
+.align-self-stretch {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+}
+
+.align-self-baseline {
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+
+/* Flex basis */
+.flex-100 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+          flex: 0 1 100%;
+}
+
+.flex-80 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 80%;
+          flex: 0 1 80%;
+}
+
+.flex-75 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 75%;
+          flex: 0 1 75%;
+}
+
+.flex-70 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 70%;
+          flex: 0 1 70%;
+}
+
+.flex-69 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 69%;
+          flex: 0 1 69%;
+}
+
+.flex-60 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 60%;
+          flex: 0 1 60%;
+}
+
+.flex-59 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 59%;
+          flex: 0 1 59%;
+}
+
+.flex-50 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 50%;
+          flex: 0 1 50%;
+}
+
+.flex-48 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 48%;
+          flex: 0 1 48%;
+}
+
+.flex-40 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 40%;
+          flex: 0 1 40%;
+}
+
+.flex-32 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 32%;
+          flex: 0 1 32%;
+}
+
+.flex-30 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 30%;
+          flex: 0 1 30%;
+}
+
+.flex-25 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 25%;
+          flex: 0 1 25%;
+}
+
+.flex-20 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 20%;
+          flex: 0 1 20%;
+}
+
+/** @format */
+.pgiCnt {
+  margin: 1rem 0;
+}
+
+.pgiBox span {
+  border: 1px solid #5cb85c;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0.5rem;
+  display: inline-block;
+}
+
+.pgiBox span:hover {
+  background-color: #818a91;
+}
+
+.activePagination {
+  color: #ffffff;
+  background-color: #5cb85c;
+}
+
+/** @format */
+.singlePostCnt header {
+  background-color: black;
+  padding: 2rem 0;
+}
+
+.singlePostCnt header h1 {
+  color: white;
+}
+
+.usernameBx p {
+  color: lightgreen;
+  font-size: 1.3rem;
+}
+
+.usernameBx p:hover {
+  text-decoration: underline;
+}
+
+.usernameBx span {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: white;
+}
+
+.imgBx figure {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.imgBx figure img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* custom-styling */
+.pdtB {
+  padding: 1.5rem 0rem;
+}
+
+.error {
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: red;
+}
+
+/* header */
+header {
+  background-color: #f3f3f3;
+}
+
+.bdr {
+  border: 1px solid;
+}
+
+.navUl li {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  color: #818a91;
+  margin-left: 1rem;
+}
+
+/* home */
+.homeBannerSec {
+  color: #ffffff;
+  background-color: #5cb85c;
+  margin: 2rem 0;
+  padding: 3rem 0;
+}
+
+.feedNav {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: 1px solid #818a91;
+}
+
+.feedNav li {
+  margin-right: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #5cb85c;
+}
+
+.signupFormCnt h1 {
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: #818a91;
+}
+
+.signupFormCnt p a {
+  font-weight: 100;
+  color: #5cb85c;
+}
+
+.signupFormCnt form {
+  width: 50%;
+  margin: auto;
+}
+
+.signupFormCnt form input {
+  width: 100%;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  border: 1px solid #818a91;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+}
+
+.signupFormCnt form input::-webkit-input-placeholder {
+  font-size: 1rem;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.signupFormCnt form input:-ms-input-placeholder {
+  font-size: 1rem;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.signupFormCnt form input::-ms-input-placeholder {
+  font-size: 1rem;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.signupFormCnt form input::placeholder {
+  font-size: 1rem;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.signupFormCnt form button {
+  font-size: 1.2rem;
+}
+
+.pst {
+  border-bottom: 1px solid #818a91;
+  padding: 2rem 0;
+}
+
+.pstFgr {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.pstUsrNm p {
+  font-size: 1.1rem;
+  color: #5cb85c;
+}
+
+.pstUsrNm p:hover {
+  text-decoration: underline;
+}
+
+.pstUsrNm time {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #818a91;
+}
+
+.pstTd {
+  margin: 1rem 0;
+}
+
+.pstTd h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.pstTd p {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #818a91;
+}
+
+.pstLk {
+  border: 0.5px solid #5cb85c;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  color: #5cb85c;
+}
+
+.pstFtr {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #818a91;
+}
+
+.pstFtr ul li {
+  margin: 0rem 0.2rem;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid #f3f3f3;
+  border-radius: 1rem;
+}
+
+.tgsAside {
+  background-color: #f3f3f3;
+  padding: 1rem;
+}
+
+.tgsAside span {
+  font-size: 0.9rem;
+  font-weight: 200;
+  color: #ffffff;
+  margin: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  background-color: #818a91;
+}
+
+/* footer */
+.cmnFtr {
+  background-color: #f3f3f3;
+  padding: 1rem 0;
+}
+
+.footerNav > p {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
+
+.footerNav > p > b > a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #5cb85c;
+}
+
+.footerNav > p > b > a:hover {
+  text-decoration: underline;
+}
+
+.footerNav > p > small > span > a {
+  color: #5cb85c;
+}
+
+.footerNav > p > small > span > a:hover {
+  text-decoration: underline;
+}
+
+.active li {
+  color: #5cb85c;
+}
+
+.errorCnt {
+  height: 80vh;
+}
+
+.errorCnt button {
+  padding: 0.1rem 1rem;
+}
+/*# sourceMappingURL=index.css.map */

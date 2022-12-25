@@ -1,0 +1,27 @@
+/** @format */
+
+$grn: #5cb85c;
+$bgGray: #f3f3f3;
+$bgDarkGray: #818a91;
+$wht: #ffffff;
+
+.pgiCnt {
+  margin: 1rem 0;
+}
+
+.pgiBox {
+  span {
+    border: 1px solid $grn;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0.5rem;
+    display: inline-block;
+    &:hover {
+      background-color: $bgDarkGray;
+    }
+  }
+}
+
+.activePagination {
+  color: $wht;
+  background-color: $grn;
+}

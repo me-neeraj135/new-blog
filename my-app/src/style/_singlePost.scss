@@ -1,0 +1,40 @@
+/** @format */
+
+.singlePostCnt {
+  header {
+    background-color: black;
+    padding: 2rem 0;
+
+    h1 {
+      color: white;
+    }
+  }
+}
+
+.usernameBx {
+  p {
+    color: lightgreen;
+    font-size: 1.3rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  span {
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: white;
+  }
+}
+.imgBx {
+  figure {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+}
