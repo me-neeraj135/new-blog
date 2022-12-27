@@ -1,13 +1,15 @@
 /** @format */
 
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import isValid from "../validation/validate";
+import { loginURL } from "../Apis/constant";
 
-class Login extends Component {
+class LoginComp extends Component {
   state = {
     email: "",
     password: "",
+    redirect: false,
 
     error: {
       email: ``,
@@ -25,11 +27,43 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { email, password } = this.state;
+    fetch(loginURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: { email, password } }),
+    })
+      .then(res => {
+        if (!res.ok) {
+          res.json().then(({ error }) => {
+            return Promise.reject(error);
+          });
+        }
+        return res.json();
+      })
+      .then(({ user }) => {
+        // console.log(user, `loginnnn`);
+        this.props.updatedUser(user);
+        this.setState({ email: "", password: "", error: "" });
+        this.props.navigate(`/`);
+      })
+      .catch(error => {
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            error: {
+              ...prevState.error,
+              email: `email or password is incorrect`,
+            },
+          };
+        });
+      });
   };
 
   render() {
     const { email, password, error } = this.state;
-
     return (
       <section>
         <div className="signupFormCnt container">
@@ -72,5 +106,10 @@ class Login extends Component {
     );
   }
 }
+
+const Login = props => {
+  const navigate = useNavigate();
+  return <LoginComp navigate={navigate} {...props} />;
+};
 
 export default Login;
