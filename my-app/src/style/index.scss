@@ -5,7 +5,10 @@
 @import "./flex";
 @import "./pagination";
 @import "./singlePost";
-
+@import "./new_post";
+@import "./setting";
+@import "./profile";
+@import "./addComment";
 /* custom-styling */
 $grn: #5cb85c;
 $bgGray: #f3f3f3;
@@ -22,12 +25,10 @@ $wht: #ffffff;
 }
 
 /* header */
-header {
+.mainHeader {
   background-color: $bgGray;
 }
-.bdr {
-  border: 1px solid;
-}
+
 .navUl {
   li {
     font-size: 1.2rem;
@@ -41,7 +42,6 @@ header {
 .homeBannerSec {
   color: $wht;
   background-color: $grn;
-  margin: 2rem 0;
   padding: 3rem 0;
 }
 
@@ -125,10 +125,11 @@ header {
   h2 {
     font-size: 1.2rem;
     font-weight: 500;
+    color: $bgDarkGray;
   }
   p {
-    font-size: 0.8rem;
-    font-weight: 100;
+    font-size: 0.9rem;
+    font-weight: 300;
     color: $bgDarkGray;
   }
 }
@@ -147,8 +148,9 @@ header {
     li {
       margin: 0rem 0.2rem;
       padding: 0.1rem 0.3rem;
-      border: 1px solid $bgGray;
+      border: 1px solid silver;
       border-radius: 1rem;
+      color: rgba(0, 0, 0, 0.678);
     }
   }
 }
@@ -166,6 +168,10 @@ header {
     padding: 0.2rem 0.5rem;
     border-radius: 1rem;
     background-color: $bgDarkGray;
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+    }
   }
 }
 
@@ -207,4 +213,8 @@ header {
   button {
     padding: 0.1rem 1rem;
   }
+}
+
+.bdr {
+  border: 1px solid red;
 }

@@ -11,7 +11,9 @@ import SinglePost from "./SinglePost";
 import NewPost from "./NewPost";
 import Profile from "./Profile";
 import Setting from "./Setting";
-import { localStorageKey, verifyUser } from "../Apis/constant";
+import EditArticle from "./EditArticle";
+import axios from "axios";
+import { localStorageKey, verifyUserURL } from "../Apis/constant";
 
 class App extends Component {
   state = {
@@ -19,25 +21,33 @@ class App extends Component {
     user: null,
     isVerifying: true,
   };
-
+  updatedUser = user => {
+    localStorage.setItem(localStorageKey, JSON.stringify(user.user.token));
+    this.setState({ isLoggedIn: true, user, isVerifying: false });
+  };
   componentDidMount() {
-    let key = localStorage[localStorageKey];
-    if (key) {
-      fetch(verifyUser, {
+    let token = localStorage[localStorageKey]
+      ? JSON.parse(localStorage[localStorageKey])
+      : "";
+
+    if (token) {
+      fetch(verifyUserURL, {
         method: "GET",
         headers: {
-          authorization: `Token${key}`,
+          authorization: `${token}`,
         },
       })
         .then(res => {
           if (res.ok) {
             return res.json();
           }
-          res.json().then(({ error }) => {
+          return res.json().then(({ error }) => {
             return Promise.reject(error);
           });
         })
-        .then(user => this.updatedUser(user))
+        .then(user => {
+          this.updatedUser(user);
+        })
         .catch(error => {
           console.log(error);
         });
@@ -45,10 +55,7 @@ class App extends Component {
       this.setState({ isVerifying: false });
     }
   }
-  updatedUser = user => {
-    this.setState({ isLoggedIn: true, user, isVerifying: false });
-    localStorage.setItem(localStorageKey, user.token);
-  };
+
   render() {
     const { isLoggedIn, user } = this.state;
     if (this.state.isVerifying) {
@@ -58,24 +65,25 @@ class App extends Component {
       <>
         <Header isLoggedIn={isLoggedIn} user={user} />
         {this.state.isLoggedIn ? (
-          <AuthenticatedApp />
+          <AuthenticatedApp user={user} />
         ) : (
-          <UnAuthenticatedApp updatedUser={this.updatedUser} />
+          <UnAuthenticatedApp updatedUser={this.updatedUser} user={user} />
         )}
       </>
     );
   }
 }
 
-function AuthenticatedApp() {
+function AuthenticatedApp(props) {
   return (
     <Routes>
       <Route path="/" exact element={<Home />} />
 
-      <Route path="/new-post" element={<NewPost />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/new-post" element={<NewPost user={props.user} />} />
+      <Route path="/profile" element={<Profile user={props.user} />} />
       <Route path="/setting" element={<Setting />} />
-      <Route path="/article/:slug" element={<SinglePost />} />
+      <Route path="/article/:slug" element={<SinglePost user={props.user} />} />
+      <Route path="/edit/article" element={<EditArticle user={props.user} />} />
 
       <Route path="*" element={<Error />} />
     </Routes>
@@ -93,7 +101,7 @@ function UnAuthenticatedApp(props) {
         path="/login"
         element={<Login updatedUser={props.updatedUser} />}
       />
-
+      <Route path="/article/:slug" element={<SinglePost user={props.user} />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

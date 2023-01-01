@@ -1,16 +1,16 @@
 /** @format */
 
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import isValid from "../validation/validate";
 import { signupURL } from "../Apis/constant";
 
-class Signup extends Component {
+class SignupComp extends Component {
   state = {
     username: ``,
     email: ``,
     password: ``,
-    error: {
+    errors: {
       username: ``,
       email: ``,
       password: ``,
@@ -19,48 +19,68 @@ class Signup extends Component {
 
   handleChange = e => {
     let { name, value } = e.target;
-    let { error } = { ...this.state };
-    isValid(name, value, error);
-    this.setState({ error, [name]: value });
+    let { errors } = { ...this.state };
+    isValid(name, value, errors);
+    this.setState({ errors, [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const { username, email, password } = this.state;
-    fetch(signupURL, {
+
+    const reqBody = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ user: { username, email, password } }),
-    })
-      .then(res => {
-        if (!res.ok) {
-          console.log(res, `ok`);
-          res.json().then(({ error }) => {
-            return Promise.reject(error);
-          });
-        }
-        return res.json();
-      })
-      .then(({ user }) => {
-        this.props.updatedUser(user);
-        this.setState({ username: "", email: "", password: "", error: "" });
-      })
-      .catch(error => {
+    };
+
+    try {
+      const res = await fetch(signupURL, reqBody);
+      if (!res.ok) {
+        const errors = await res.json().then(({ errors }) => {
+          console.log(errors, `res-not-ok`);
+
+          return Promise.reject(errors);
+        });
+      }
+      console.log(res, `res-ok`);
+      let user = await res.json();
+      console.log(user, `user-signup`);
+      this.props.updatedUser(user);
+      this.setState({ username: "", email: "", password: "" });
+      this.props.navigate(`/`);
+    } catch (errors) {
+      console.log(errors, `in-catch-signup`);
+      if (errors.username) {
         this.setState(prevState => {
           return {
             ...prevState,
-            error: {
-              ...prevState.error,
-              username: `something went wrong`,
+            errors: {
+              ...prevState.errors,
+
+              username: `username: ${errors.username}`,
             },
           };
         });
-      });
+      }
+      if (errors.email) {
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+
+              email: `email: ${errors.email}`,
+            },
+          };
+        });
+      }
+    }
   };
   render() {
-    const { username, email, password, error } = this.state;
+    const { username, email, password, errors } = this.state;
     return (
       <section>
         <div className="signupFormCnt container">
@@ -70,8 +90,8 @@ class Signup extends Component {
           </div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="">
-              <span className={error.username ? `error` : ``}>
-                {error.username}
+              <span className={errors.username ? `error` : ``}>
+                {errors.username && errors.username}
               </span>
               <input
                 type="text"
@@ -83,7 +103,9 @@ class Signup extends Component {
             </label>
 
             <label htmlFor="">
-              <span className={error.email ? `error` : ``}>{error.email}</span>
+              <span className={errors.email ? `error` : ``}>
+                {errors.email && errors.email}
+              </span>
               <input
                 type="email"
                 name="email"
@@ -94,8 +116,8 @@ class Signup extends Component {
             </label>
 
             <label htmlFor="">
-              <span className={error.password ? `error` : ``}>
-                {error.password}
+              <span className={errors.password ? `error` : ``}>
+                {errors.password && errors.password}
               </span>
               <input
                 type="password"
@@ -117,4 +139,9 @@ class Signup extends Component {
     );
   }
 }
+
+const Signup = props => {
+  const navigate = useNavigate();
+  return <SignupComp navigate={navigate} {...props} />;
+};
 export default Signup;

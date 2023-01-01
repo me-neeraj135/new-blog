@@ -1,0 +1,51 @@
+/** @format */
+
+.addCmt {
+  //   border: 1px solid blue;
+  margin: 1rem 0;
+
+  form {
+    width: 30%;
+    // border: 1px solid green;
+    textarea {
+      width: 100%;
+      height: 5rem;
+      border: 1px solid silver;
+      border-radius: 0.2rem;
+      padding: 0.5rem;
+      resize: none;
+    }
+  }
+}
+.cmtLi {
+  padding: 0.5rem;
+
+  .author {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  .comment {
+    max-width: 60%;
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin: 0 0.5rem;
+    word-wrap: break-word;
+  }
+}
+
+.cmt-created {
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+.cmtDelete {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.1px 0.5rem;
+  border: none;
+  background-color: lavender;
+  &:hover {
+    text-decoration: underline;
+  }
+}

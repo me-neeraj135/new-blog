@@ -1,6 +1,14 @@
 /** @format */
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { localStorageKey, articleURL } from "../Apis/constant";
+
+const token = localStorage[localStorageKey]
+  ? JSON.parse(localStorage[localStorageKey])
+  : ``;
+
 function Post(props) {
+  // console.log(props, `pp`);
   let {
     author,
     title,
@@ -8,32 +16,38 @@ function Post(props) {
     description,
     taglist,
     favoritesCount,
-    key,
+
     slug,
   } = props.article;
 
   return (
-    <article key={key} className="pst">
+    <article key={slug} className="pst">
       <header className="flex align-center justify-between">
         <div className="flex align-center">
-          <NavLink>
+          <NavLink to="/profile">
             <figure className="pstFgr bdRadius ">
               <img
                 className="full-width bdRadius"
-                src={author.image}
+                src={
+                  author.image ||
+                  `/images/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png`
+                }
                 alt={author.username}
               />
             </figure>
           </NavLink>
 
           <div className="pstUsrNm">
-            <NavLink>
+            <NavLink to="/profile">
               <p>{author.username}</p>
             </NavLink>
             <time>{createdAt}</time>
           </div>
         </div>
-        <div className="pstLk">
+        <div
+          className="pstLk"
+          onClick={() => props.favoriteFunc(props.article, slug, token)}
+        >
           <span>💗</span>
           <span>{favoritesCount}</span>
         </div>
@@ -56,4 +70,5 @@ function Post(props) {
     </article>
   );
 }
+
 export default Post;

@@ -2,7 +2,7 @@
 import { NavLink } from "react-router-dom";
 function Header(props) {
   return (
-    <header className="pdtB">
+    <header className="pdtB mainHeader">
       <nav className="container flex justify-between">
         <NavLink to="/">
           <div>conduit</div>

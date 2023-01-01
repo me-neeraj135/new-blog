@@ -86,7 +86,7 @@ a {
   outline: none;
   background: none;
   padding: 0.35rem 1rem;
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
   box-sizing: border-box;
 }
 
@@ -100,11 +100,33 @@ a {
 }
 
 .btn-secondary {
+  font-size: 0.7rem;
+  font-weight: 900;
+  border: 1px solid silver;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}
+.btn-delete {
   color: white;
-  background-color: purple;
-  border: 1px solid purple;
+  background-color: red;
+  border: 1px solid red;
 }
 
 .bdRadius {
   border-radius: 50%;
+}
+
+.follow-btn {
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid silver;
+  border-radius: 0.2rem;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid #5cb85c;
+
+    color: #5cb85c;
+  }
 }

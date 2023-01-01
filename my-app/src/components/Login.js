@@ -11,59 +11,62 @@ class LoginComp extends Component {
     password: "",
     redirect: false,
 
-    error: {
+    errors: {
       email: ``,
       password: ``,
     },
   };
-
   handleChange = e => {
     let { name, value } = e.target;
-    let error = { ...this.state.error };
+    let errors = { ...this.state.errors };
 
-    isValid(name, value, error);
-    this.setState({ error, [name]: value });
+    isValid(name, value, errors);
+    this.setState({ errors, [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch(loginURL, {
+    const reqBody = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ user: { email, password } }),
-    })
-      .then(res => {
-        if (!res.ok) {
-          res.json().then(({ error }) => {
-            return Promise.reject(error);
-          });
-        }
-        return res.json();
-      })
-      .then(({ user }) => {
-        // console.log(user, `loginnnn`);
-        this.props.updatedUser(user);
-        this.setState({ email: "", password: "", error: "" });
-        this.props.navigate(`/`);
-      })
-      .catch(error => {
+    };
+
+    try {
+      const res = await fetch(loginURL, reqBody);
+      if (!res.ok) {
+        const { errors } = await res.json();
+        console.log(errors, `errorData`);
+
         this.setState(prevState => {
           return {
             ...prevState,
-            error: {
-              ...prevState.error,
-              email: `email or password is incorrect`,
+            errors: {
+              ...prevState.errors,
+              email: `Email or password is incorrect`,
             },
           };
         });
-      });
+        throw new Error(`fetch error`);
+      }
+      console.log(res, `res-ok`);
+      let user = await res.json();
+      console.log(user, `user-loggedin`);
+      this.props.updatedUser(user);
+      this.setState({ email: "", password: "" });
+      this.props.navigate(`/`);
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   render() {
-    const { email, password, error } = this.state;
+    console.log(this.props, `login - props`);
+
+    const { email, password, errors } = this.state;
     return (
       <section>
         <div className="signupFormCnt container">
@@ -73,7 +76,9 @@ class LoginComp extends Component {
           </div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="">
-              <span className={error.email ? `error` : ``}>{error.email}</span>
+              <span className={errors.email ? `error` : ``}>
+                {errors.email}
+              </span>
               <input
                 type="email"
                 name="email"
@@ -84,8 +89,8 @@ class LoginComp extends Component {
             </label>
 
             <label htmlFor="">
-              <span className={error.password ? `error` : ``}>
-                {error.password}
+              <span className={errors.password ? `error` : ``}>
+                {errors.password}
               </span>
               <input
                 type="password"

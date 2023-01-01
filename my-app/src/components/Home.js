@@ -11,6 +11,12 @@ import Pagination from "./Pagination";
 import Posts from "./Posts";
 import Sidebar from "./Sidebar";
 import { articleURL, tagURL } from "../Apis/constant";
+import { localStorageKey } from "../Apis/constant";
+import axios from "axios";
+
+const token = localStorage[localStorageKey]
+  ? JSON.parse(localStorage[localStorageKey])
+  : ``;
 
 class Home extends Component {
   state = {
@@ -22,13 +28,40 @@ class Home extends Component {
     activeTab: "",
   };
 
+  handleFavorite = (a, s, t) => {
+    if (t) {
+      try {
+        axios({
+          method: a.favorited ? "DELETE" : "POST",
+          url: articleURL + `/${s}/favorite`,
+          headers: {
+            "Content-type": "application/json",
+            authorization: t,
+          },
+        });
+        this.fetchData();
+      } catch (error) {
+        this.setState({ error });
+      }
+    } else {
+      this.setState({ error: `please login` });
+    }
+  };
+
   fetchData = () => {
     const limit = this.state.articlesPerPage;
     const offset = (this.state.activePageIndex - 1) * limit;
     const tag = this.state.activeTab;
 
     fetch(
-      articleURL + `/?offset=${offset}&limit=${limit}` + (tag && `&tag=${tag}`)
+      articleURL + `/?offset=${offset}&limit=${limit}` + (tag && `&tag=${tag}`),
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          authorization: token,
+        },
+      }
     )
       .then(res => {
         if (!res.ok) {
@@ -40,7 +73,7 @@ class Home extends Component {
         this.setState({
           articles: data.articles,
           error: "",
-          articlesCount: data.articles.length,
+          articlesCount: data.articlesCount,
         });
       })
       .catch(err => {
@@ -89,7 +122,12 @@ class Home extends Component {
           <div className=" container pdtB flex justify-between">
             <section className="mrgTb flex-70 ">
               <FeedNav activeTab={activeTab} removeTab={this.removeTab} />
-              <Posts articles={articles} error={error} />
+              <Posts
+                articles={articles}
+                error={error}
+                favoriteFunc={this.handleFavorite}
+              />
+
               <Pagination
                 articlesCount={articlesCount}
                 articlesPerPage={articlesPerPage}
