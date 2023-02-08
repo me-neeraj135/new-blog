@@ -1,0 +1,31 @@
+/** @format */
+
+.settingForm {
+  width: 40%;
+  margin: auto;
+  legend {
+    border: 1px solid silver;
+    border-radius: 0.2rem;
+    padding: 1rem;
+  }
+  input {
+    width: 100%;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+  textarea {
+    width: 100%;
+    font-size: 1.1rem;
+
+    resize: none;
+    padding: 0.5rem;
+
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+}

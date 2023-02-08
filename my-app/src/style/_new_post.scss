@@ -1,0 +1,30 @@
+/** @format */
+
+.new_postForm {
+  width: 50%;
+  margin: auto;
+
+  legend {
+    border: 1px solid silver;
+    padding: 1rem;
+    border-radius: 0.2rem;
+  }
+  input {
+    width: 100%;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+
+    resize: none;
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+}

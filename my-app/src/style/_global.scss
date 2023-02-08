@@ -1,0 +1,132 @@
+/**
+ * Global Styles
+ *
+ * @format
+ */
+
+/* General */
+
+/* Container */
+.container {
+  max-width: 100vw;
+  width: 90%;
+  margin: 0 auto;
+}
+.primary-heading {
+  font-size: 3rem;
+  font-weight: 600;
+}
+.secondary-heading {
+  font-size: 2rem;
+  font-weight: 100;
+}
+.tertiary-heading {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.txtCnt {
+  text-align: center;
+}
+.mrgTb {
+  margin: 2rem 0;
+}
+.mrgLf {
+  margin: 0rem 1rem;
+}
+/* Anchor Decoration */
+a {
+  text-decoration: none;
+}
+
+/* Image Adjust */
+.full-width {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Positions */
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+.z-index-100 {
+  z-index: 100;
+}
+
+.z-index-50 {
+  z-index: 50;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-block;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.35rem 1rem;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #5cb85c;
+}
+
+.btn-secondary {
+  font-size: 0.7rem;
+  font-weight: 900;
+  border: 1px solid silver;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}
+.btn-delete {
+  color: white;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.bdRadius {
+  border-radius: 50%;
+}
+
+.follow-btn {
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid silver;
+  border-radius: 0.2rem;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid #5cb85c;
+
+    color: #5cb85c;
+  }
+}
