@@ -39,7 +39,7 @@ class LoginComp extends Component {
       const res = await fetch(loginURL, reqBody);
       if (!res.ok) {
         const { errors } = await res.json();
-        console.log(errors, `errorData`);
+        // console.log(errors, `errorData`);
 
         this.setState(prevState => {
           return {
@@ -52,9 +52,9 @@ class LoginComp extends Component {
         });
         throw new Error(`fetch error`);
       }
-      console.log(res, `res-ok`);
+      // console.log(res, `res-ok`);
       let user = await res.json();
-      console.log(user, `user-loggedin`);
+      // console.log(user, `user-loggedin`);
       this.props.updatedUser(user);
       this.setState({ email: "", password: "" });
       this.props.navigate(`/`);
@@ -64,7 +64,7 @@ class LoginComp extends Component {
   };
 
   render() {
-    console.log(this.props, `login - props`);
+    // console.log(this.props, `login - props`);
 
     const { email, password, errors } = this.state;
     return (

@@ -9,14 +9,14 @@ function FeedNav(props) {
         <ul className="feedNav flex align-center">
           <li onClick={props.removeTab}>
             <NavLink activeclassname="active" to="/">
-              global feed
+              <span>global feed</span>
             </NavLink>
           </li>
 
           {props.activeTab && (
             <li className="">
               <NavLink activeclassname="active" to="/">
-                #{props.activeTab}
+                <span>#{props.activeTab}</span>
               </NavLink>
             </li>
           )}

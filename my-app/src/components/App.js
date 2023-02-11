@@ -55,7 +55,10 @@ class App extends Component {
       this.setState({ isVerifying: false });
     }
   }
-
+  handleLogOut = () => {
+    localStorage.clear();
+    this.setState({ isLoggedIn: false, user: null });
+  };
   render() {
     const { isLoggedIn, user } = this.state;
     if (this.state.isVerifying) {
@@ -63,7 +66,11 @@ class App extends Component {
     }
     return (
       <>
-        <Header isLoggedIn={isLoggedIn} user={user} />
+        <Header
+          isLoggedIn={isLoggedIn}
+          user={user}
+          logOut={this.handleLogOut}
+        />
         {this.state.isLoggedIn ? (
           <AuthenticatedApp user={user} />
         ) : (
@@ -77,7 +84,7 @@ class App extends Component {
 function AuthenticatedApp(props) {
   return (
     <Routes>
-      <Route path="/" exact element={<Home />} />
+      <Route path="/" exact element={<Home {...props} />} />
 
       <Route path="/new-post" element={<NewPost user={props.user} />} />
       <Route path="/profile" element={<Profile user={props.user} />} />

@@ -27,6 +27,13 @@ $wht: #ffffff;
 /* header */
 .mainHeader {
   background-color: $bgGray;
+  nav {
+    div {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: black;
+    }
+  }
 }
 
 .navUl {
@@ -54,6 +61,10 @@ $wht: #ffffff;
     margin-right: 1rem;
     padding: 1rem;
     border-bottom: 1px solid $grn;
+    span {
+      color: black;
+      text-transform: capitalize;
+    }
   }
 }
 
@@ -217,4 +228,8 @@ $wht: #ffffff;
 
 .bdr {
   border: 1px solid red;
+}
+
+.logOut {
+  cursor: pointer;
 }

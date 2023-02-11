@@ -48,6 +48,33 @@ class Home extends Component {
     }
   };
 
+  articlesCount = () => {
+    const tag = this.state.activeTab;
+
+    fetch(articleURL + `/?` + (tag && `&tag=${tag}`), {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        authorization: token,
+      },
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then(data => {
+        this.setState({
+          error: "",
+          articlesCount: data.articles.length,
+        });
+      })
+      .catch(err => {
+        this.setState({ error: `something went wrong!` });
+      });
+  };
+
   fetchData = () => {
     const limit = this.state.articlesPerPage;
     const offset = (this.state.activePageIndex - 1) * limit;
@@ -73,7 +100,7 @@ class Home extends Component {
         this.setState({
           articles: data.articles,
           error: "",
-          articlesCount: data.articlesCount,
+          // articlesCount: data.articles.length,
         });
       })
       .catch(err => {
@@ -103,6 +130,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.articlesCount();
     this.fetchData();
   }
 

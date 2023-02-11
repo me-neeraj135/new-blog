@@ -896,6 +896,12 @@ a {
   background-color: #f3f3f3;
 }
 
+.mainHeader nav div {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+}
+
 .navUl li {
   font-size: 1.2rem;
   text-transform: capitalize;
@@ -920,6 +926,11 @@ a {
   margin-right: 1rem;
   padding: 1rem;
   border-bottom: 1px solid #5cb85c;
+}
+
+.feedNav li span {
+  color: black;
+  text-transform: capitalize;
 }
 
 .signupFormCnt h1 {
@@ -1101,5 +1112,9 @@ a {
 
 .bdr {
   border: 1px solid red;
+}
+
+.logOut {
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */

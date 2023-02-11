@@ -62,7 +62,7 @@ class EditArticleComp extends Component {
   componentDidMount() {
     let { title, description, body, taglist } = this.props.article;
 
-    console.log(this.props.article, taglist, `edit-pro-art`);
+    // console.log(this.props.article, taglist, `edit-pro-art`);
     this.setState({ title, description, body, taglist });
   }
 

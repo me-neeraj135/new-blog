@@ -1,14 +1,17 @@
 /** @format */
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 function Header(props) {
   return (
     <header className="pdtB mainHeader">
       <nav className="container flex justify-between">
         <NavLink to="/">
-          <div>conduit</div>
+          <div className="logo">conduit</div>
         </NavLink>
 
-        <ul>{props.isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}</ul>
+        <ul>
+          {props.isLoggedIn ? <AuthHeader {...props} /> : <NonAuthHeader />}
+        </ul>
       </nav>
     </header>
   );
@@ -47,6 +50,10 @@ function AuthHeader(props) {
       <NavLink activeclassname="active" to="/profile">
         <li>profile</li>
       </NavLink>
+
+      <li className="logOut" onClick={props.logOut}>
+        log out
+      </li>
     </ul>
   );
 }
